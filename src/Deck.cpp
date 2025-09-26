@@ -1,5 +1,6 @@
 #include "Deck.hpp"
 #include <algorithm>
+#include <chrono>
 
 Deck::Deck() : currentIndex(0), rng(std::random_device{}()) {
     for (int s = 0; s < 4; ++s) {
@@ -7,11 +8,11 @@ Deck::Deck() : currentIndex(0), rng(std::random_device{}()) {
             cards.emplace_back(static_cast<Suit>(s), static_cast<Rank>(r));
         }
     }
-    shuffle();
+    shuffle(1);
 }
 
-void Deck::shuffle() {
-    std::shuffle(cards.begin(), cards.end(), rng);
+void Deck::shuffle(int a) {
+    std::shuffle(cards.begin(), cards.end(), std::mt19937(std::random_device{}()+a));
     currentIndex = 0;
 }
 

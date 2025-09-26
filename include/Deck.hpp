@@ -6,7 +6,7 @@
 class Deck {
 public:
     Deck();
-    void shuffle();
+    void shuffle(int a);
     Card drawCard();
     bool isEmpty() const;
     int remainingCards() const;
